@@ -1,0 +1,6 @@
+#Ignore State file
+*.state
+
+#Ignore images
+*.png
+*.jpg
