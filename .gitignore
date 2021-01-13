@@ -4,3 +4,6 @@
 #Ignore images
 *.png
 *.jpg
+
+#Ignore personal credentials
+personal.tfvars
