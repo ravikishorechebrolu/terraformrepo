@@ -1,9 +1,11 @@
 #Ignore State file
-*.state
+tfcode/terraform.tfstare
+tfcode/.terraform
+tfcode/.terraform.lock.hcl
 
 #Ignore images
 *.png
 *.jpg
 
 #Ignore personal credentials
-personal.tfvars
+personal.auto.tfvars
