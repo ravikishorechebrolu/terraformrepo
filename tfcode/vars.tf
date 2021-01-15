@@ -22,11 +22,11 @@ variable "image_id" {
   
 }
 
-variable "webuserdata" {
+/* variable "webuserdata" {
     default = "./cloudinitdata/webservers"
-}
-
-/* variable "ssh_public_key" {
-    default = "./cloudintidata/webserversshpublickey"
-  
 } */
+
+variable "ssh_public_key" {
+    default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCirAyE4R/4x8HyOSrZJrz3UJVZNKUBRDloQ29TdDZ2uvvS6F/0qYlTAX8V0TIts/kMzYHolwEd6O7AYhrVWTPYi1qIGYG6q/RR5p1UkVh+jR9V6l6TsJ6VAbgDcXzclqPtJGP9esUqzC8+hmfIwGJ3usCt8cjbYWaYZSINO5tgMBWONonPBTGJStHK08cQmKLVTxStswN/K5fA1tXdk0xdEJ/t7qCSEm+tO4lQa2Whw0vrzpQ9y3AKX0/2W+yUSZMHkCA7V4M6sdiZU6FQVQQruQ4p2frKV+LFN9I6Zn3lDGiWUrnSsN15Ipo+KKEG1IRwy91SzhSsk4GG8u1gY+ip"
+  
+}

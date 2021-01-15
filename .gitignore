@@ -9,3 +9,4 @@ tfcode/.terraform.lock.hcl
 
 #Ignore personal credentials
 personal.auto.tfvars
+tfcode/terraform.tfstate
