@@ -17,6 +17,7 @@ resource "oci_core_subnet" "public_subnet_project1" {
   compartment_id      = var.compartment_ocid
   vcn_id              = oci_core_vcn.project1vcn.id
   security_list_ids   = [oci_core_security_list.public_securitylist_project1.id]
+  route_table_id      = oci_core_route_table.routetable_project1.id
  }
 
 
@@ -28,6 +29,7 @@ resource "oci_core_subnet" "private_subnet_project1" {
   compartment_id      = var.compartment_ocid
   vcn_id              = oci_core_vcn.project1vcn.id
   security_list_ids   = [oci_core_security_list.private_securitylist_project1.id]
+  prohibit_public_ip_on_vnic = "true"
  }
 
  //Internet Gateway
@@ -50,6 +52,7 @@ resource "oci_core_route_table" "routetable_project1" {
     network_entity_id = oci_core_internet_gateway.internetgateway_project1.id
   }
 }
+
 
 //Security lists Public
 
