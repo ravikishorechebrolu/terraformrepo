@@ -147,7 +147,15 @@ resource "oci_core_route_table" "routetable_project1" {
     }
     }
 }
-    
+
+data "oci_core_services" "test_services" {
+    # Use the below filter if the services id is not picked.
+    /* filter {
+      name = "name"
+      values = [ "All FRA Services In Oracle Services Network" ]
+    } */
+}
+
 //Service Gateway
 
 resource "oci_core_service_gateway" "test_services" {

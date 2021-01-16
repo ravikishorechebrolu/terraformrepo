@@ -11,6 +11,10 @@ variable "compartment_id" {
     description = "OCID of OCSC sandbox compartment"
   }
 
+variable "compartment_ocid" {
+    description = "Some part of collab code is using compartment_ocid instead of compartment_id "
+  }
+
 variable "instance_shape" {
     description = "requried shape for compute"
     default = "VM.Standard2.1"  
@@ -20,6 +24,11 @@ variable "image_id" {
     description = "Image id for Oracle Linux 7.8"
     default = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaafjcegvwbd3qgin4unmtr5jm5gjhtcfxgnhjwodzewlja5zqm6eaq"
   
+}
+
+variable "instancename" {
+  type    = list
+  default = [1,2,3,4,5,6]
 }
 
 /* variable "webuserdata" {

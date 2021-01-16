@@ -1,5 +1,6 @@
 #Ignore State file
-tfcode/terraform.tfstare
+terraform.tfstate.*
+terraform.tfstate
 tfcode/.terraform
 tfcode/.terraform.lock.hcl
 
@@ -9,4 +10,4 @@ tfcode/.terraform.lock.hcl
 
 #Ignore personal credentials
 personal.auto.tfvars
-tfcode/terraform.tfstate
+#tfcode/terraform.tfstate
