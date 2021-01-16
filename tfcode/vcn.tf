@@ -4,7 +4,7 @@ resource "oci_core_vcn" "project1vcn" {
     #Required
     compartment_id = var.compartment_ocid
     #Optional
-    cidr_block = "10.0.0.0/16"
+    cidr_block = var.mainvcnid
     display_name = "project1vcn"
     dns_label = "project1vcn"
 }
@@ -167,6 +167,12 @@ resource "oci_core_service_gateway" "test_services" {
         service_id = data.oci_core_services.test_services.services.0.id
     }
     vcn_id = oci_core_vcn.project1vcn.id
+  
+}
 
-   
+resource "oci_core_network_security_group" "test_network_security_group" {
+    #Required
+    compartment_id = var.compartment_id
+    vcn_id = oci_core_vcn.project1vcn.id
+    display_name = "nsgforapptoatp"
 }

@@ -10,4 +10,6 @@ resource "oci_database_autonomous_database" "project1atp" {
   freeform_tags            = { "tenancy" = "srepreprod1" }
   license_model            = "LICENSE_INCLUDED"
   subnet_id                = oci_core_subnet.private_subnet_project1.id
+  nsg_ids                  = [oci_core_network_security_group.nsgforatp.id]
+  private_endpoint_label   = "project1atp"
 }

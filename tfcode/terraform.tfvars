@@ -3,6 +3,7 @@ region= "eu-frankfurt-1"
 #region= "us-ashburn-1"
 compartment_id= "ocid1.compartment.oc1..aaaaaaaaxhx2jyay7ejhrshtw7ndu6aqal6iqohkphfmsd7srwog2btkvyba"
 compartment_ocid= "ocid1.compartment.oc1..aaaaaaaaxhx2jyay7ejhrshtw7ndu6aqal6iqohkphfmsd7srwog2btkvyba"
+mainvcnid= "10.0.0.0/16"
 
 #atp related values
 autonomous_database_db_name                  = "project1"
