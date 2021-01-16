@@ -39,3 +39,42 @@ variable "ssh_public_key" {
     default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCirAyE4R/4x8HyOSrZJrz3UJVZNKUBRDloQ29TdDZ2uvvS6F/0qYlTAX8V0TIts/kMzYHolwEd6O7AYhrVWTPYi1qIGYG6q/RR5p1UkVh+jR9V6l6TsJ6VAbgDcXzclqPtJGP9esUqzC8+hmfIwGJ3usCt8cjbYWaYZSINO5tgMBWONonPBTGJStHK08cQmKLVTxStswN/K5fA1tXdk0xdEJ/t7qCSEm+tO4lQa2Whw0vrzpQ9y3AKX0/2W+yUSZMHkCA7V4M6sdiZU6FQVQQruQ4p2frKV+LFN9I6Zn3lDGiWUrnSsN15Ipo+KKEG1IRwy91SzhSsk4GG8u1gY+ip"
   
 }
+
+variable "webuserdata" {
+    default = <<EOF
+    #!/bin/bash
+    touch /tmp/started
+    yum -y install httpd
+
+    #Start the service
+    systemctl enable httpd.service
+    systemctl start httpd.service
+
+
+    #Make changes to firewalld
+    firewall-offline-cmd --add-service=http
+    systemctl enable firewalld
+    systemctl restart firewalld
+
+    #Update index.html
+    hostname > /var/www/html/index.html
+    touch /tmp/completed
+    EOF
+}
+
+
+
+# ATP related variables
+
+variable "autonomous_database_admin_password" {
+    description = "Password for ADMIN user"
+}
+variable "autonomous_database_db_name" {
+    description = "DBNAME"
+}
+variable "autonomous_database_data_storage_size_in_tbs" {
+    description = "In integer values , floating numbers like 1.5 are not accepeted"
+}
+variable "autonomous_database_display_name" {
+    description = "Display Name"
+}

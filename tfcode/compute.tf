@@ -21,7 +21,8 @@ resource "oci_core_instance" "webservers" {
     }
 
     metadata = {
-      userdata = base64encode(file("./cloudinitdata/webservers"))
+      userdata = base64encode(var.webuserdata)
+      #userdata = base64encode(file("./cloudinitdata/webservers"))
       ssh_authorized_keys = var.ssh_public_key 
     }
 
@@ -31,7 +32,7 @@ resource "oci_core_instance" "webservers" {
 }
 
 
-resource "oci_core_instance" "appservers" {
+/* resource "oci_core_instance" "appservers" {
     #for_each = toset( ["1"] )
     count = 1
     availability_domain = element(data.oci_identity_availability_domains.adname.availability_domains[*].name,count.index)
@@ -57,3 +58,4 @@ resource "oci_core_instance" "appservers" {
       create = "10m"
     }
 }
+ */
