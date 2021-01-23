@@ -42,7 +42,9 @@ variable "ssh_public_key" {
   
 }
 
-variable "webuserdata" {
+# variable "webcustom_bootstrap_file_name" {}
+
+/* variable "webuserdata" {
     default = <<EOF
     #!/bin/bash
     touch /tmp/started
@@ -67,7 +69,7 @@ variable "webuserdata" {
     touch /tmp/completed
     EOF
 }
-
+ */
 
 
 # ATP related variables

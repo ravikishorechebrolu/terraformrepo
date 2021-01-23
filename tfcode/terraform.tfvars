@@ -9,3 +9,6 @@ mainvcnid= "10.0.0.0/16"
 autonomous_database_db_name                  = "project1"
 autonomous_database_data_storage_size_in_tbs = "1"
 autonomous_database_display_name             = "project1"
+
+#compute
+#webcustom_bootstrap_file_name = "./cloudinitdata/webservers"

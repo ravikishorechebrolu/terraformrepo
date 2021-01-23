@@ -17,8 +17,8 @@ resource "oci_core_subnet" "public_subnet_project1" {
   compartment_id      = var.compartment_ocid
   vcn_id              = oci_core_vcn.project1vcn.id
   security_list_ids   = [oci_core_security_list.public_securitylist_project1.id]
-  route_table_id      = oci_core_route_table.routetable_project1.id
- }
+  route_table_id      = oci_core_route_table.pubroutetable.id
+   }
 
 
 //Private Subnet
@@ -30,6 +30,7 @@ resource "oci_core_subnet" "private_subnet_project1" {
   vcn_id              = oci_core_vcn.project1vcn.id
   security_list_ids   = [oci_core_security_list.private_securitylist_project1.id]
   prohibit_public_ip_on_vnic = "true"
+  route_table_id      = oci_core_route_table.pvtroutetable.id
  }
 
  //Internet Gateway
@@ -41,15 +42,28 @@ resource "oci_core_subnet" "private_subnet_project1" {
 }
 
 //Route Tables
-resource "oci_core_route_table" "routetable_project1" {
+resource "oci_core_route_table" "pubroutetable" {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_vcn.project1vcn.id
-  display_name   = "routetable_project1"
+  display_name   = "pubroutetable"
 
   route_rules {
     destination       = "0.0.0.0/0"
     destination_type  = "CIDR_BLOCK"
     network_entity_id = oci_core_internet_gateway.internetgateway_project1.id
+  }
+}
+
+
+resource "oci_core_route_table" "pvtroutetable" {
+  compartment_id = var.compartment_ocid
+  vcn_id         = oci_core_vcn.project1vcn.id
+  display_name   = "pvtroutetable"
+
+  route_rules {
+    destination       = "0.0.0.0/0"
+    destination_type  = "CIDR_BLOCK"
+    network_entity_id = oci_core_internet_gateway.natgw.id
   }
 }
 
@@ -178,4 +192,9 @@ resource "oci_core_network_security_group" "test_network_security_group" {
     compartment_id = var.compartment_id
     vcn_id = oci_core_vcn.project1vcn.id
     display_name = "nsgforapptoatp"
+}
+
+resource "oci_core_nat_gateway" "natgw"{
+    compartment_id = var.compartment_ocid
+    vcn_id = oci_core_vcn.project1vcn.id
 }
