@@ -27,7 +27,7 @@ resource "oci_core_instance" "webservers" {
       #userdata = base64encode(var.webuserdata)
       #userdata = base64encode(file("./cloudinitdata/webservers"))
       #user_data = base64encode(file(var.webcustom_bootstrap_file_name))
-      user_data = data.template_cloudinit_config.webserverinit.rendered
+      user_data = data.cloudinit_config.webserverinit.rendered
       ssh_authorized_keys = var.ssh_public_key 
     }
 

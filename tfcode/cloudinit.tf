@@ -1,15 +1,22 @@
-locals {
-  initfile = templatefile(./cloudinitdata/webservers.sh.tpl)
+/* locals {
+  initfile = file("./cloud-init/webservers.sh")
+} */
+
+
+#Load script file
+data "template_file" "script" {
+  template = file("./cloud-init/webservers.sh")
 }
 
-data "template_cloud_init_config" "webserverinit" {
+
+#Script cloud init
+data "cloudinit_config" "webserverinit" {
     gzip = false
     base64_encode=true
 
     part {
-    filename="webservers.sh.tpl"
     content_type = "text/x-shellscript"
-    content      = "local.initfile.rendered"
+    content      = data.template_file.script.rendered
   }
   
 }

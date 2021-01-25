@@ -1,6 +1,7 @@
 #!/bin/bash
  
-touch /tmp/executescript 
+sudo touch /tmp/executescript
+sudo touch /var/tmp/executescript
 # cp /etc/motd /etc/motd.bkp
 # cat << EOF > /etc/motd
  

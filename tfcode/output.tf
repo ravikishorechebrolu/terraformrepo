@@ -3,6 +3,15 @@ output "Servicename" {
   
 }
 
+locals {
+  reqop = tomap({"oci_core_instance.webservers[*].display_name"="oci_core_instance.webservers[*].public_ip"})
+}
+
+output "ipmap" {
+    value = local.reqop  
+}
+
+# if the above one does not work.
 output "publicips" {
     value = oci_core_instance.webservers[*].public_ip
   
