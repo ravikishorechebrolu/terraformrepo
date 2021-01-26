@@ -1,10 +1,6 @@
-/*
-locals {
-  backendipaddress = oci_core_instance.webservers[*].private_ip
-}
-*/
-
 //Load Balancer
+
+/*
 
 resource "oci_load_balancer_load_balancer" "project1lb" {
     #Required
@@ -12,19 +8,12 @@ resource "oci_load_balancer_load_balancer" "project1lb" {
     display_name = "project1lb"
     shape = "10Mbps"
     subnet_ids = [oci_core_subnet.public_subnet_project1.id]
- /*
-    shape_details {
-    maximum_bandwidth_in_mbps = 20
-    minimum_bandwidth_in_mbps = 10
-    }
-
- */  
-}
+ }
 
 //LB Backend
 
 resource "oci_load_balancer_backend" "project1lbbackend1" {
-    count = var.webhostcount
+    count = var.webhostcount # count depends on the no of webservers
     backendset_name = oci_load_balancer_backend_set.project1lbbackendset.name
     ip_address = element(oci_core_instance.webservers[*].private_ip, count.index)
     load_balancer_id = oci_load_balancer_load_balancer.project1lb.id
@@ -66,3 +55,4 @@ resource "oci_load_balancer_listener" "project1listner" {
 
 }
 
+*/
