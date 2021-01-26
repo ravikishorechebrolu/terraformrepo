@@ -3,10 +3,8 @@ data "oci_identity_availability_domains" "adname" {
   }
 
 
-
-
 resource "oci_core_instance" "webservers" {
-    count = 1
+    count = 2
     #for_each = toset( ["1"] )
     availability_domain = element(data.oci_identity_availability_domains.adname.availability_domains[*].name,count.index)
     compartment_id = var.compartment_id

@@ -9,9 +9,11 @@ sudo systemctl start httpd.service
 # firewall-offline-cmd --add-service=ssh
 sudo systemctl enable firewalld
 sudo systemctl restart firewalld
+sleep 10
 sudo firewall-cmd --permanent --zone=public --add-service=http
 sudo firewall-cmd --permanent --zone=public --add-service=ssh
 sudo firewall-cmd --reload
+sleep 10
 #Update index.html
 sudo chown -R opc:opc /var/www/html
 sudo hostname > /var/www/html/index.html

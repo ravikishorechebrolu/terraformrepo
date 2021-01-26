@@ -1,24 +1,32 @@
+/*
+locals {
+  backendipaddress = oci_core_instance.webservers[*].private_ip
+}
+*/
+
 //Load Balancer
 
 resource "oci_load_balancer_load_balancer" "project1lb" {
     #Required
     compartment_id = var.compartment_id
-    display_name = project1lb
-    shape = "Flexible"
-    subnet_ids = oci_core_subnet.public_subnet_project1.id
-
+    display_name = "project1lb"
+    shape = "10Mbps"
+    subnet_ids = [oci_core_subnet.public_subnet_project1.id]
+ /*
     shape_details {
-    maximum_bandwidth_in_mbps = 10
+    maximum_bandwidth_in_mbps = 20
     minimum_bandwidth_in_mbps = 10
     }
+
+ */  
 }
 
 //LB Backend
 
-resource "oci_load_balancer_backend" "project1lbbackend" {
-    #Required
+resource "oci_load_balancer_backend" "project1lbbackend1" {
+    count = var.webhostcount
     backendset_name = oci_load_balancer_backend_set.project1lbbackendset.name
-    ip_address = var.backend_ip_address
+    ip_address = element(oci_core_instance.webservers[*].private_ip, count.index)
     load_balancer_id = oci_load_balancer_load_balancer.project1lb.id
     port = 80
 }
@@ -29,18 +37,32 @@ resource "oci_load_balancer_backend_set" "project1lbbackendset" {
     #Required
     health_checker {
         #Required
-        protocol = var.backend_set_health_checker_protocol
+        protocol = "HTTP"
 
         #Optional
-        interval_ms = var.backend_set_health_checker_interval_ms
-        port = var.backend_set_health_checker_port
-        response_body_regex = var.backend_set_health_checker_response_body_regex
-        retries = var.backend_set_health_checker_retries
-        return_code = var.backend_set_health_checker_return_code
-        timeout_in_millis = var.backend_set_health_checker_timeout_in_millis
-        url_path = var.backend_set_health_checker_url_path
+        interval_ms = 10000
+        port = 80
+        response_body_regex = ".*"
+        retries = 3
+        return_code = 200
+        timeout_in_millis = 3000
+        url_path = "/"
     }
     load_balancer_id = oci_load_balancer_load_balancer.project1lb.id
     name = "project1lbbackendset"
-    policy = var.backend_set_policy
+    policy = "ROUND_ROBIN"
+
 }
+
+
+
+resource "oci_load_balancer_listener" "project1listner" {
+    #Required
+    default_backend_set_name = oci_load_balancer_backend_set.project1lbbackendset.name
+    load_balancer_id = oci_load_balancer_load_balancer.project1lb.id
+    name = "project1listner"
+    port = 80
+    protocol = "HTTP"
+
+}
+

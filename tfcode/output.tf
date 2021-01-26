@@ -16,3 +16,8 @@ output "publicips" {
     value = oci_core_instance.webservers[*].public_ip
   
 }
+
+
+output "privateips" {
+  value = oci_core_instance.webservers[*].private_ip
+}

@@ -42,6 +42,12 @@ variable "ssh_public_key" {
   
 }
 
+
+variable "webhostcount" {
+default = 2
+  
+}
+
 # variable "webcustom_bootstrap_file_name" {}
 
 /* variable "webuserdata" {
@@ -74,9 +80,11 @@ variable "ssh_public_key" {
 
 # ATP related variables
 
+/*
 variable "autonomous_database_admin_password" {
     description = "Password for ADMIN user"
 }
+
 variable "autonomous_database_db_name" {
     description = "DBNAME"
 }
@@ -86,3 +94,5 @@ variable "autonomous_database_data_storage_size_in_tbs" {
 variable "autonomous_database_display_name" {
     description = "Display Name"
 }
+
+*/
