@@ -1,7 +1,5 @@
 //Load Balancer
 
-/*
-
 resource "oci_load_balancer_load_balancer" "project1lb" {
     #Required
     compartment_id = var.compartment_id
@@ -55,4 +53,3 @@ resource "oci_load_balancer_listener" "project1listner" {
 
 }
 
-*/
