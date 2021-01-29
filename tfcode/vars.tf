@@ -5,7 +5,7 @@ variable "private_key_path" {
     description = "Private key path of the pem file"
 }
 variable "region" {
-    description = "Region we want to deploy the Infra"
+    description = "For srepreprod1 suggested ones are in order eu-frankfurt-1 us-ashburn-1 us-phoenix-1"
 }
 variable "compartment_id" {
     description = "OCID of OCSC sandbox compartment"
@@ -44,8 +44,7 @@ variable "ssh_public_key" {
 
 
 variable "webhostcount" {
-default = 2
-  
+default = 2  
 }
 
 # variable "webcustom_bootstrap_file_name" {}
@@ -80,7 +79,7 @@ default = 2
 
 # ATP related variables
 
-/*
+
 variable "autonomous_database_admin_password" {
     description = "Password for ADMIN user"
 }
@@ -94,5 +93,3 @@ variable "autonomous_database_data_storage_size_in_tbs" {
 variable "autonomous_database_display_name" {
     description = "Display Name"
 }
-
-*/

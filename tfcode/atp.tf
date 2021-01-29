@@ -1,4 +1,4 @@
-/* resource "oci_database_autonomous_database" "project1atp" {
+resource "oci_database_autonomous_database" "project1atp" {
   compartment_id = var.compartment_ocid
   admin_password = var.autonomous_database_admin_password
   cpu_core_count = "1"
@@ -12,4 +12,4 @@
   subnet_id = oci_core_subnet.private_subnet_project1.id
   nsg_ids = [oci_core_network_security_group.nsgforatp.id]
   private_endpoint_label = "project1atp"
-} */
+}

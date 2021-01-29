@@ -20,3 +20,21 @@ data "cloudinit_config" "webserverinit" {
   }
   
 }
+
+
+#Load script file
+data "template_file" "appscript" {
+  template = file("./cloud-init/appserver.sh")
+}
+
+#Script cloud init
+data "cloudinit_config" "appserverinit" {
+    gzip = false
+    base64_encode=true
+
+    part {
+    content_type = "text/x-shellscript"
+    content      = data.template_file.appscript.rendered
+  }
+  
+}
